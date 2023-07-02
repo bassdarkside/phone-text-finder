@@ -23,7 +23,6 @@ def format_phone_number(phone_number):
 
     return formatted_number
 
-# Example usage
 # PHONE = "673467247"
 PHONE = input("\nEnter phone number as 10-digits format\nPhone number: ")
 formatted_phone = format_phone_number(PHONE)
@@ -43,10 +42,38 @@ def find_numbers(url):
     return None
 
 
-# Example usage:
-WEBSITE_URL = 'https://'+ input("Enter website for search phone number like this format 'example.com': ")
-numbers_found = find_numbers(WEBSITE_URL)
-if numbers_found:
-    print(Fore.GREEN + "Number found! --> ", Fore.RED + numbers_found[0])
-else:
-    print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+# WEBSITE_URL = 'https://'+ input("Enter website for search phone number like this format 'example.com': ")
+# numbers_found = find_numbers(WEBSITE_URL)
+# if numbers_found:
+    # print(Fore.GREEN + "Number found! --> ", Fore.RED + numbers_found[0])
+# else:
+    # print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+
+# import requests
+
+def search_string(query):
+    url = 'https://api.duckduckgo.com/'
+    params = {
+        'q': query,
+        'format': 'json'
+    }
+
+    # Отправляем GET-запрос к API DuckDuckGo
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    # Извлекаем строки из ответа API
+    results = []
+    for result in data['AbstractText'], data['RelatedTopics']:
+        results.append(result[0])
+
+    # Возвращаем результаты поиска
+    return results
+
+# Пример использования
+query = formatted_phone  # Замените на нужный вам поисковый запрос
+
+results = search_string(query)
+print(f"Результаты поиска по запросу '{query}':")
+for result in results:
+    print(result)
