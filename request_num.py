@@ -3,7 +3,7 @@
 '''
 import re
 import requests
-from colorama import Fore, Back
+from colorama import Fore
 
 def format_phone_number(phone_number):
     '''
@@ -19,12 +19,29 @@ def format_phone_number(phone_number):
     # Format the number as (XXX) XXX-XXXX
     # formatted_number = f"38({digits[:3]}){digits[3:6]}-{digits[6:8]}-{digits[8:]}"
     formatted_number = f"38{digits[:3]}{digits[3:6]}{digits[6:8]}{digits[8:]}"
+    formatted_number1 = f"+38{digits[:3]}{digits[3:6]}{digits[6:8]}{digits[8:]}"
+    formatted_number2 = f"+38({digits[:3]}){digits[3:6]}{digits[6:8]}{digits[8:]}"
+    formatted_number3 = f"+38({digits[:3]}){digits[3:6]}-{digits[6:8]}-{digits[8:]}"
+    formatted_number4 = f"+38({digits[:3]}){digits[3:6]}-{digits[6:8]}{digits[8:]}"
+    formatted_number5 = f"+38({digits[:3]}) {digits[3:6]}{digits[6:8]}{digits[8:]}"
+    formatted_number6 = f"+38({digits[:3]}) {digits[3:6]}-{digits[6:8]}{digits[8:]}"
+    formatted_number7 = f"+38({digits[:3]}) {digits[3:6]}-{digits[6:8]}-{digits[8:]}"
+    formatted_number8 = f"+38 ({digits[:3]}) {digits[3:6]}-{digits[6:8]}-{digits[8:]}"
+    formatted_number9 = f"+38 {digits[:3]} {digits[3:6]}-{digits[6:8]}-{digits[8:]}"
 
 
-    return formatted_number
 
-# PHONE = "673467247"
-PHONE = input("\nEnter phone number as 10-digits format\nPhone number: ")
+
+
+
+
+    return formatted_number, formatted_number1, formatted_number2, \
+            formatted_number3, formatted_number4, formatted_number5, \
+            formatted_number6, formatted_number7, formatted_number8, \
+                formatted_number9
+
+PHONE = "0673467247"
+# PHONE = input("\nEnter phone number as 10-digits format\nPhone number: ")
 formatted_phone = format_phone_number(PHONE)
 # print(Fore.BLUE + "NON-formatted phone number -> ", PHONE)
 # print(Fore.GREEN + "FORMATTED  phone number -> ", formatted_phone + Fore.RESET)
@@ -65,13 +82,12 @@ def search_string(query):
     # Извлекаем строки из ответа API
     results = []
     for result in data['AbstractText'], data['RelatedTopics']:
-        results.append(result[0])
-
+        results.append(result[:2])
     # Возвращаем результаты поиска
     return results
 
 # Пример использования
-query = formatted_phone  # Замените на нужный вам поисковый запрос
+query = formatted_phone # Замените на нужный вам поисковый запрос
 
 results = search_string(query)
 print(f"Результаты поиска по запросу '{query}':")
