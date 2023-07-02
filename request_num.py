@@ -33,12 +33,12 @@ def format_phone_number(phone_number):
 
 
 
+    return formatted_number
 
-
-    return formatted_number, formatted_number1, formatted_number2, \
-            formatted_number3, formatted_number4, formatted_number5, \
-            formatted_number6, formatted_number7, formatted_number8, \
-                formatted_number9
+    # return formatted_number, formatted_number1, formatted_number2, \
+    #         formatted_number3, formatted_number4, formatted_number5, \
+    #         formatted_number6, formatted_number7, formatted_number8, \
+    #             formatted_number9
 
 PHONE = "0673467247"
 # PHONE = input("\nEnter phone number as 10-digits format\nPhone number: ")
@@ -65,31 +65,35 @@ def find_numbers(url):
     # print(Fore.GREEN + "Number found! --> ", Fore.RED + numbers_found[0])
 # else:
     # print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+# 1c5de21b71de4a0fbca851ef70335c0f
+# https://api.bing.microsoft.com/
 
-# import requests
+from azure.cognitiveservices.search.websearch import WebSearchAPI
+from azure.cognitiveservices.search.websearch.models import SafeSearch
+from msrest.authentication import CognitiveServicesCredentials
 
-def search_string(query):
-    url = 'https://api.duckduckgo.com/'
-    params = {
-        'q': query,
-        'format': 'json'
-    }
+def search_string_bing(search_term, api_key):
+    # Инициализация клиента Bing Search API
+    credentials = CognitiveServicesCredentials(api_key)
+    client = WebSearchAPI(credentials)
 
-    # Отправляем GET-запрос к API DuckDuckGo
-    response = requests.get(url, params=params)
-    data = response.json()
+    # Выполнение поиска
+    web_data = client.web.search(query=search_term, safesearch=SafeSearch.strict)
 
-    # Извлекаем строки из ответа API
-    results = []
-    for result in data['AbstractText'], data['RelatedTopics']:
-        results.append(result[:2])
-    # Возвращаем результаты поиска
+    # Извлечение результатов поиска
+    results = web_data.web_pages.value
+
+    # Возвращение результатов
     return results
 
 # Пример использования
-query = formatted_phone # Замените на нужный вам поисковый запрос
+search_term = formatted_phone   # Замените на нужную вам строку для поиска
+api_key = '1c5de21b71de4a0fbca851ef70335c0f'  # Замените на ваш ключ API Bing Search
 
-results = search_string(query)
-print(f"Результаты поиска по запросу '{query}':")
+results = search_string_bing(search_term, api_key)
+print(f"Результаты поиска в сети интернет:")
 for result in results:
-    print(result)
+    print(result.name)
+    print(result.url)
+    print()
+
