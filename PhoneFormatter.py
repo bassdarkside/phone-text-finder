@@ -29,17 +29,17 @@ def format_phone_number(phone_number):
     #         formatted_number6, formatted_number7, formatted_number8, \
     #             formatted_number9
 
-def phones_query():
-PHONE = [
-        "073 873-05-20",
-        "073 148-20-44",
-        "073 175-35-58",
-        "073 675-56-31",
-        "068 850-47-63"
-        ]
+def phones_query(format_phone_number):
+    PHONE = [
+            "073 873-05-20",
+            "073 148-20-44",
+            "073 175-35-58",
+            "073 675-56-31",
+            "068 850-47-63"
+            ]
 
-for i in PHONE:
-    formatted_phone = format_phone_number(i)
+    for i in PHONE:
+        formatted_phone = format_phone_number(i)
 
 # PHONE = "0673467247" # test for patriot.ua
 # PHONE = input("\nEnter phone number as 10-digits format\nPhone number: ")
