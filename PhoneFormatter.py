@@ -37,9 +37,13 @@ def phones_query(format_phone_number):
             "073 675-56-31",
             "068 850-47-63"
             ]
-
+    fmt_arr = []
     for i in PHONE:
+        fmt_arr.append() = format_phone_number(i)
         formatted_phone = format_phone_number(i)
+    return formatted_phone
+# formatted_phone = fmt_arr
+    
 
 # PHONE = "0673467247" # test for patriot.ua
 # PHONE = input("\nEnter phone number as 10-digits format\nPhone number: ")
