@@ -8,13 +8,13 @@ ENDPOINT = "https://api.bing.microsoft.com" + "/v7.0/search"  # "/v7.0/"
 
 
 def web_results_with_count_and_offset(subscription_key):
+    """
+    Set the query, offset, and count using the SDK's search method. See:
+    https://learn.microsoft.com/python/api/azure-cognitiveservices-search-websearch/azure.cognitiveservices.search.websearch.operations.weboperations?view=azure-python.
+    """
     client = WebSearchClient(AzureKeyCredential(SUBSCRIPTION_KEY))
 
     try:
-        """
-        Set the query, offset, and count using the SDK's search method. See:
-        https://learn.microsoft.com/python/api/azure-cognitiveservices-search-websearch/azure.cognitiveservices.search.websearch.operations.weboperations?view=azure-python.
-        """
         web_data = client.web.search(
             query="380673467247",
             count=10,
@@ -27,11 +27,7 @@ def web_results_with_count_and_offset(subscription_key):
         print('\r\nSearching for "380673467247"')
 
         if web_data.web_pages.value:
-            """
-            If web pages are available, print the # of responses, and the first and second
-            web pages returned.
-            """
-            print("Webpage Results#{}".format(len(web_data.web_pages.value)))
+            print("Webpage Results#{}".format(len(web_data.web_pages.value))) # If web pages are available, print the # of responses, and the first and second web pages returned.
 
             first_web_page = web_data.web_pages.value
             for n in first_web_page:
