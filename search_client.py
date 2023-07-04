@@ -1,6 +1,7 @@
-# Import required modules.
 # from web_search_client import WebSearchClient
-from azure.core.credentials import AzureKeyCredential
+from azure.cognitiveservices.search.websearch.models import AnswerType
+from azure.cognitiveservices.search.websearch import WebSearchClient
+from msrest.authentication import CognitiveServicesCredentials
 
 
 SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
@@ -12,7 +13,8 @@ def web_results_with_count_and_offset(subscription_key):
     Set the query, offset, and count using the SDK's search method. See:
     https://learn.microsoft.com/python/api/azure-cognitiveservices-search-websearch/azure.cognitiveservices.search.websearch.operations.weboperations?view=azure-python.
     """
-    client = WebSearchClient(AzureKeyCredential(SUBSCRIPTION_KEY))
+    # client = WebSearchClient(AzureKeyCredential(SUBSCRIPTION_KEY))
+    client = WebSearchClient(ENDPOINT, CognitiveServicesCredentials(subscription_key))
 
     try:
         web_data = client.web.search(
@@ -44,5 +46,5 @@ def web_results_with_count_and_offset(subscription_key):
     except Exception as err:
         print("Encountered exception. {}".format(err))
 
-
-web_results_with_count_and_offset(SUBSCRIPTION_KEY)
+if __name__ == "__main__":
+    web_results_with_count_and_offset(SUBSCRIPTION_KEY)

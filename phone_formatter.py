@@ -36,22 +36,13 @@ def format_phone_number(phone_number):
 
 
 def phones_query():
-    """Phone formatter query list
-
-    Args:
-        format_phone_number (_type_): _description_
-
-    Returns:
-        _type_: _description_
-    """
-
     phone = [
-        # "073 873-05-20",
-        # "073 148-20-44",
-        # "073 175-35-58",
-        # "073 675-56-31",
+        "073 873-05-20",
+        "073 148-20-44",
+        "073 175-35-58",
+        "073 675-56-31",
         "068 850-47-63",
-        "067 3467154",
+        "067 346-71-54",
     ]
     fphones = []
     for i in phone:
