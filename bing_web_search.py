@@ -15,7 +15,7 @@ headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 
 # Call the API
 try:
-    response = requests.get(endpoint, headers=headers, params=params)
+    response = requests.get(endpoint, headers=headers, params=params, timeout=500)
     response.raise_for_status()
 
     print("\nHeaders:\n")
