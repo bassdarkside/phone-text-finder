@@ -12,27 +12,31 @@ from phone_formatter import phones_query
 
 
 def find_numbers(url):
-    """
-    Find numbers from HTTPS GET request
-    """
-    formatted_numbs = phones_query()
-    for num in formatted_numbs:
-        phonenumb = num
-        response = requests.get(url, timeout=500)
-        if response.status_code == 200:
-            numbers = re.findall(phonenumb, response.text)
-            # numbers = re.findall(r'\d+', response.text)
-            return numbers
+    """_Find numbers from HTTPS GET request"""
+    response = requests.get(url, timeout=500)
+    if response.status_code == 200:
+        numbers = re.findall(phonenumb, response.text)
+        # numbers = re.findall(r'\d+', response.text)
+        return numbers
     return None
 
 
-WEBSITE_URL = "https://" + ("patriot.ua")
-numbers_found = find_numbers(WEBSITE_URL)  # <--------------<
+def input_querys():
+    """_Input"""
+    global phonenumb
+    formatted_numbs = phones_query()
+    for num in formatted_numbs:
+        phonenumb = num
+    target = "patriot.ua"
+    WEBSITE_URL = "https://" + (target)
+    numbers_found = find_numbers(WEBSITE_URL)  # <--------------<
 
-if numbers_found:
-    print(Fore.GREEN + "Number found! --> ", Fore.RED + numbers_found[0])
-else:
-    print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+    if numbers_found:
+        print(Fore.GREEN + "Number found! --> ", numbers_found)
+    else:
+        print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+
+
 # WEBSITE_URL = 'https://'+ input(
 #           "Enter website for search phone number like this format 'example.com': ")
 # 1c5de21b71de4a0fbca851ef70335c0f
