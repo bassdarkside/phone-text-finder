@@ -13,28 +13,40 @@ from phone_formatter import phones_query
 
 def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
-    response = requests.get(url, timeout=500)
-    if response.status_code == 200:
-        numbers = re.findall(phonenumb, response.text)
-        # numbers = re.findall(r'\d+', response.text)
-        return numbers
-    return None
+    # global phonenumb
+    formatted_numbs = phones_query()
+    num = ""
+    for index, pn in enumerate(formatted_numbs):
+        if index < len(formatted_numbs):
+            num = pn
+        phonenumb = num
+        response = requests.get(url, timeout=500)
+        if response.status_code == 200:
+            numbers = re.findall(phonenumb, response.text)
+            # numbers = re.findall(r'\d+', response.text)
+            if numbers:
+                print(Fore.GREEN + "Number found! --> ", numbers[0])
+            else:
+                print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+        if response.status_code != 200:
+            return None
 
 
 def input_querys():
     """_Input"""
-    global phonenumb
-    formatted_numbs = phones_query()
-    for num in formatted_numbs:
-        phonenumb = num
+    # global numbers
     target = "patriot.ua"
     WEBSITE_URL = "https://" + (target)
-    numbers_found = find_numbers(WEBSITE_URL)  # <--------------<
+    # numbers = find_numbers(WEBSITE_URL)  # <--------------<
+    find_numbers(WEBSITE_URL)
+    # if numbers_found:
+    # if numbers:
+    #     print(Fore.GREEN + "Number found! --> ", numbers)
+    # else:
+    #     print(Fore.RED + "Failed to retrieve the website or no numbers found.")
 
-    if numbers_found:
-        print(Fore.GREEN + "Number found! --> ", numbers_found)
-    else:
-        print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+
+input_querys()
 
 
 # WEBSITE_URL = 'https://'+ input(
