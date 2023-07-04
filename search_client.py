@@ -1,5 +1,5 @@
 # Import required modules.
-from web_search_client import WebSearchClient
+# from web_search_client import WebSearchClient
 from azure.core.credentials import AzureKeyCredential
 
 

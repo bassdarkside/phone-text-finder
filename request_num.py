@@ -13,14 +13,17 @@ from phone_formatter import phones_query
 
 def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
-    # global phonenumb
+    response = requests.get(url, timeout=3000)
+    if response.status_code == 403:
+        print("code 403")
+        return None
     formatted_numbs = phones_query()
     num = ""
     for index, pn in enumerate(formatted_numbs):
         if index < len(formatted_numbs):
             num = pn
         phonenumb = num
-        response = requests.get(url, timeout=500)
+        # response = requests.get(url, timeout=3000)
         if response.status_code == 200:
             numbers = re.findall(phonenumb, response.text)
             # numbers = re.findall(r'\d+', response.text)
@@ -28,14 +31,13 @@ def find_numbers(url):
                 print(Fore.GREEN + "Number found! --> ", numbers[0])
             else:
                 print(Fore.RED + "Failed to retrieve the website or no numbers found.")
-        if response.status_code != 200:
-            return None
+    print("code ", response.status_code)
+    return None
 
 
 def input_querys():
     """_Input"""
-    # global numbers
-    target = "patriot.ua"
+    target = "base.net.ua"
     WEBSITE_URL = "https://" + (target)
     # numbers = find_numbers(WEBSITE_URL)  # <--------------<
     find_numbers(WEBSITE_URL)
