@@ -7,7 +7,7 @@ from colorama import Fore
 
 from phone_formatter import phones_query
 
-# from azure.cognitiveservices.search.websearch import WebSearchAPI
+from azure.cognitiveservices.search.websearch import WebSearchAPI
 from azure.cognitiveservices.search.websearch.models import SafeSearch
 from msrest.authentication import CognitiveServicesCredentials
 
