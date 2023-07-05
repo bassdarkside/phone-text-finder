@@ -48,11 +48,13 @@ def input_querys():
     # else:
     #     print(Fore.RED + "Failed to retrieve the website or no numbers found.")
 
+
 input_querys()
 # WEBSITE_URL = 'https://'+ input(
 #           "Enter website for search phone number like this format 'example.com': ")
 # 1c5de21b71de4a0fbca851ef70335c0f
 # https://api.bing.microsoft.com/
+
 
 # =-=--=-=-=-==-=-=-=-=-=-=-=-=-
 def search_string_bing(search_term, API_KEY):
@@ -69,9 +71,10 @@ def search_string_bing(search_term, API_KEY):
     # Возвращение результатов
     return results
 
+
 # Пример использования
-search_term = 'projector'
-API_KEY = '1c5de21b71de4a0fbca851ef70335c0f'
+search_term = "projector"
+API_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 
 results = search_string_bing(search_term, API_KEY)
 print("Результаты поиска в сети интернет:")
