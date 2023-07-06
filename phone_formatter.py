@@ -54,6 +54,7 @@ def list_format_number(phone_number):
 
 
 def phones_query():
+    '''phones list'''
     phone = [
         "044 350-74-01",
         "044 350-74-02",
@@ -71,7 +72,7 @@ def phones_query():
         "098 759-08-23",
     ]
     fphones = []
-    f_list = []
+    # f_list = []
     for i in phone:
         numbers_after_format = format_phone_number(i)
         fphones.append(numbers_after_format)
