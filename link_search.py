@@ -32,9 +32,9 @@ def find_numbers(url):
             numbers = re.findall(phonenumb, response.text)
             # numbers = re.findall(r'\d+', response.text)
             if numbers:
-                print(Fore.GREEN + "Number found! --> ", numbers[0])
-            # else:
-            #     print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+                print(Fore.GREEN + "Number found! --> ", numbers[0], " in this web site ", response.url)
+            if numbers is None:
+                print(Fore.RED + "Failed to retrieve the website or no numbers found.")
     # print("code ", response.status_code)
     return None
 

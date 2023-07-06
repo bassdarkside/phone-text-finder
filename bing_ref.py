@@ -25,18 +25,22 @@ def bing_search(subscription_key):
     # WebPages
     if web_data.web_pages:
 
-        # print("\nWebpage Results#", len(web_data.web_pages.value))
+        print("\nWebpage Results#", len(web_data.web_pages.value))
+        data = web_data.web_pages.value
+        for i in range(len(data)):
+            add = web_data.web_pages.value[i]
+            pages.append(add.url)
         # First
-        first_web_page = web_data.web_pages.value[0]
-        sec = web_data.web_pages.value[1]
-        thi = web_data.web_pages.value[2]
-        four = web_data.web_pages.value[3]
-        five = web_data.web_pages.value[4]
-        pages.append(first_web_page.url)
-        pages.append(sec.url)
-        pages.append(thi.url)
-        pages.append(four.url)
-        pages.append(five.url)
+        # first_web_page = web_data.web_pages.value[0]
+        # sec = web_data.web_pages.value[1]
+        # thi = web_data.web_pages.value[2]
+        # four = web_data.web_pages.value[3]
+        # five = web_data.web_pages.value[4]
+        # pages.append(first_web_page.url)
+        # pages.append(sec.url)
+        # pages.append(thi.url)
+        # pages.append(four.url)
+        # pages.append(five.url)
         # names.append(first_web_page.name)
         # names.append(sec.name)
         # names.append(thi.name)
