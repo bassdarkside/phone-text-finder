@@ -3,7 +3,7 @@ from web_search_client import WebSearchClient
 from web_search_client.models import SafeSearch
 from azure.core.credentials import AzureKeyCredential
 
-SUBSCRIPTION_KEY = None
+SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 ENDPOINT = "https://api.bing.microsoft.com"+  "/v7.0/"
 
 
@@ -167,4 +167,3 @@ if __name__ == "__main__":
     web_results_with_count_and_offset(SUBSCRIPTION_KEY)
     web_search_with_response_filter(SUBSCRIPTION_KEY)
     web_search_with_answer_count_promote_and_safe_search(SUBSCRIPTION_KEY)
-    
