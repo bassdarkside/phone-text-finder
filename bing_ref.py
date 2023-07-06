@@ -1,4 +1,5 @@
 '''WORKING!!!'''
+from pprint import pprint
 from web_search_client import WebSearchClient
 from azure.core.credentials import AzureKeyCredential
 
@@ -19,24 +20,28 @@ def bing_search(subscription_key):
     input_query = ph_query[0]
     web_data = client.web.search(query=input_query)
     print("\nSearched for Query#", input_query)
-    first_page = []
-    names = []
+    pages = []
+    # names = []
     # WebPages
     if web_data.web_pages:
 
-        print("\nWebpage Results#", len(web_data.web_pages.value))
+        # print("\nWebpage Results#", len(web_data.web_pages.value))
         # First
         first_web_page = web_data.web_pages.value[0]
-        first_page.append(first_web_page.url)
-        names.append(first_web_page.name)
         sec = web_data.web_pages.value[1]
-        first_page.append(sec.url)
-        names.append(sec.name)
         thi = web_data.web_pages.value[2]
-        first_page.append(thi.url)
-        names.append(thi.name)
-        print("\nFirst web page name: ", first_web_page.name)
-        print("First web page URL: ", first_web_page.url)
+        four = web_data.web_pages.value[3]
+        five = web_data.web_pages.value[4]
+        pages.append(first_web_page.url)
+        pages.append(sec.url)
+        pages.append(thi.url)
+        pages.append(four.url)
+        pages.append(five.url)
+        # names.append(first_web_page.name)
+        # names.append(sec.name)
+        # names.append(thi.name)
+        # print("\nFirst web page name: ", first_web_page.name)
+        # print("First web page URL: ", first_web_page.url)
         # Second
         # second_web_page = web_data.web_pages.value[1]
         # print("\nSecond web page name: ", second_web_page.name)
@@ -46,8 +51,8 @@ def bing_search(subscription_key):
     else:
         print("Didn't see any Web data..")
     
-    print(names)
-    return first_page
+    pprint(pages)
+    return pages
     # except Exception as err:
     #     print("Encountered exception. ", err)
 

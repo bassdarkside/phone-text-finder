@@ -14,7 +14,7 @@ def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
     headers = {'Content-Type': 'text/html'}
     response = requests.get(url, timeout=3000, headers=headers)
-    print(response.status_code)
+    # print(response.status_code)
     if response.status_code == 403:
         print("code 403")
         return None
@@ -35,7 +35,7 @@ def find_numbers(url):
                 print(Fore.GREEN + "Number found! --> ", numbers[0])
             # else:
             #     print(Fore.RED + "Failed to retrieve the website or no numbers found.")
-    print("code ", response.status_code)
+    # print("code ", response.status_code)
     return None
 
 
