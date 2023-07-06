@@ -5,7 +5,7 @@ import requests
 from colorama import Fore
 
 from phone_formatter import phones_query
-
+from bing_ref import bing_search
 
 def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
@@ -38,18 +38,14 @@ def find_numbers(url):
 
 def input_querys():
     """_Input"""
-    target = ""
-    web_url = "https://" + (target)
-    # numbers = find_numbers(WEBSITE_URL)  # <--------------<
-    find_numbers(web_url)
-    # if numbers_found:
-    # if numbers:
-    #     print(Fore.GREEN + "Number found! --> ", numbers)
-    # else:
-    #     print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+    # target = ""
+    # web_url = "https://" + (target)
+    # numbers = find_numbers(web_url)  # <--------------<
+    # find_numbers(web_url)
+    find_numbers(bing_search)
 
 
-def bing_search():
+def bing_to_search():
     """Bing search"""
     subscription_key = "1c5de21b71de4a0fbca851ef70335c0f"
     endpoint = "https://api.bing.microsoft.com" + "/v7.0/search"
@@ -79,4 +75,4 @@ def bing_search():
 
 
 # input_querys()
-bing_search()
+# bing_to_search()
