@@ -56,8 +56,6 @@ def list_format_number(phone_number):
 def phones_query():
     '''phones list'''
     phone = [
-        "044 350-74-01",
-        "044 350-74-02",
         "050 426-02-25",
         "063 537-13-86",
         "068 012-97-82",
