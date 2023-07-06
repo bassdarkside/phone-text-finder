@@ -14,35 +14,42 @@ def bing_search(subscription_key):
     This will look up a single query (Xbox) and print out name and url for first web results.
     """
     client = WebSearchClient(AzureKeyCredential(subscription_key))
+    
     ph_query = phones_query()
-    num = ""
-    for index, p_n in enumerate(ph_query):
-        if index < len(ph_query):
-            num = p_n
-    input_query = num
-    try:
+    input_query = ph_query[0]
+    web_data = client.web.search(query=input_query)
+    print("\nSearched for Query#", input_query)
+    first_page = []
+    names = []
+    # WebPages
+    if web_data.web_pages:
 
-        web_data = client.web.search(query=input_query)
-        print("\nSearched for Query#", input_query)
+        print("\nWebpage Results#", len(web_data.web_pages.value))
+        # First
+        first_web_page = web_data.web_pages.value[0]
+        first_page.append(first_web_page.url)
+        names.append(first_web_page.name)
+        sec = web_data.web_pages.value[1]
+        first_page.append(sec.url)
+        names.append(sec.name)
+        thi = web_data.web_pages.value[2]
+        first_page.append(thi.url)
+        names.append(thi.name)
+        print("\nFirst web page name: ", first_web_page.name)
+        print("First web page URL: ", first_web_page.url)
+        # Second
+        # second_web_page = web_data.web_pages.value[1]
+        # print("\nSecond web page name: ", second_web_page.name)
+        # print("Second web page URL: ", second_web_page.url)
 
-        # WebPages
-        if web_data.web_pages:
+        # return first_web_page.url
+    else:
+        print("Didn't see any Web data..")
+    
+    print(names)
+    return first_page
+    # except Exception as err:
+    #     print("Encountered exception. ", err)
 
-            print("\nWebpage Results#", len(web_data.web_pages.value))
-            # First
-            first_web_page = web_data.web_pages.value[0]
-            print("\nFirst web page name: ", first_web_page.name)
-            print("First web page URL: ", first_web_page.url)
-            # Second
-            # second_web_page = web_data.web_pages.value[1]
-            # print("\nSecond web page name: ", second_web_page.name)
-            # print("Second web page URL: ", second_web_page.url)
-            return first_web_page.url
-        else:
-            print("Didn't see any Web data..")
-
-
-    except Exception as err:
-        print("Encountered exception. ", err)
-if __name__ == "__main__":
-    bing_search(SUBSCRIPTION_KEY)
+# if __name__ == "__main__":
+#     bing_search(SUBSCRIPTION_KEY)

@@ -5,13 +5,16 @@ import requests
 from colorama import Fore
 
 from phone_formatter import phones_query
+
 from bing_ref import bing_search
+
+SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 
 def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
     headers = {'Content-Type': 'text/html'}
     response = requests.get(url, timeout=3000, headers=headers)
-
+    print(response.status_code)
     if response.status_code == 403:
         print("code 403")
         return None
@@ -30,8 +33,8 @@ def find_numbers(url):
             # numbers = re.findall(r'\d+', response.text)
             if numbers:
                 print(Fore.GREEN + "Number found! --> ", numbers[0])
-            else:
-                print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+            # else:
+            #     print(Fore.RED + "Failed to retrieve the website or no numbers found.")
     print("code ", response.status_code)
     return None
 
@@ -42,7 +45,13 @@ def input_querys():
     # web_url = "https://" + (target)
     # numbers = find_numbers(web_url)  # <--------------<
     # find_numbers(web_url)
-    find_numbers(bing_search)
+    web_url = bing_search(SUBSCRIPTION_KEY)
+    num = ""
+    for index, p_n in enumerate(web_url):
+        if index < len(web_url):
+            num = p_n
+        urls = num
+        find_numbers(urls)
 
 
 def bing_to_search():
@@ -73,6 +82,6 @@ def bing_to_search():
     except Exception as ex:
         raise ex
 
-
-# input_querys()
+if __name__ == "__main__":
+    input_querys()
 # bing_to_search()
