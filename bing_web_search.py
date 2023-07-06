@@ -6,10 +6,11 @@ subscription_key = "1c5de21b71de4a0fbca851ef70335c0f"
 endpoint = "https://api.bing.microsoft.com" + "/v7.0/search"
 
 # Query term(s) to search for.
-query = "Microsoft Cognitive Services"
+query = "+38(097)129-9999"
 
 # Construct a request
-mkt = "en-US"
+# mkt = "en-US"
+mkt = "ru-RU"
 params = {"q": query, "mkt": mkt}
 headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 
