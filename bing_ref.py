@@ -8,28 +8,14 @@ from phone_formatter import phones_query
 SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 ENDPOINT = "https://api.bing.microsoft.com"+  "/v7.0/"
 
-def counter(ph_query):
-    # ph_query = phones_query()
-    q_numb = ""
-    for i in range(len(ph_query)):
-        q_numb = ph_query[i]
-        print(q_numb)
-    return q_numb
-
 def bing_search(subscription_key):
     """WebSearchResultTypesLookup.
 
     This will look up a single query (Xbox) and print out name and url for first web results.
     """
     client = WebSearchClient(AzureKeyCredential(subscription_key))
-    # ph_query = phones_query()
-    # for i in range(len(ph_query)):
-    #     q_numb = ph_query[i]
     ph_query = phones_query()
-
-    numb = counter(ph_query)
-    input_query = numb
-    # input_query = ph_query[0]
+    input_query = ph_query
     web_data = client.web.search(query=input_query)
     print("\nSearched for Query#", input_query)
     pages = []
@@ -49,7 +35,7 @@ def bing_search(subscription_key):
         # return first_web_page.url
     else:
         print("Didn't see any Web data..")
-    # pprint(pages)
+    pprint(pages)
     return pages
     # except Exception as err:
     #     print("Encountered exception. ", err)

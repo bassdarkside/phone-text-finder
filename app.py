@@ -13,28 +13,28 @@ SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
     headers = {'Content-Type': 'text/html'}
+    # headers = {'user-agent'}
     response = requests.get(url, timeout=3000, headers=headers)
     # print(response.status_code)
     if response.status_code == 403:
         print("code 403")
         return None
 
-    formatted_numbs = phones_query()
-    num = ""
+    formatted_numb = phones_query()
+    # num = ""
 
-    for index, p_n in enumerate(formatted_numbs):
-        if index < len(formatted_numbs):
-            num = p_n
-
-        phonenumb = num
-        # response = requests.get(url, timeout=3000)
-        if response.status_code == 200:
-            numbers = re.findall(phonenumb, response.text)
-            # numbers = re.findall(r'\d+', response.text)
-            if numbers:
-                print(Fore.GREEN + "Number found! --> ", numbers[0], " in this web site ", response.url)
-            if numbers is None:
-                print(Fore.RED + "Failed to retrieve the website or no numbers found.")
+    # for index, p_n in enumerate(formatted_numbs):
+    #     if index < len(formatted_numbs):
+    #         num = p_n
+    phonenumb = formatted_numb
+    # response = requests.get(url, timeout=3000)
+    if response.status_code == 200:
+        numbers = re.findall(phonenumb, response.text)
+        # numbers = re.findall(r'\d+', response.text)
+        if numbers:
+            print(Fore.GREEN + "Number found! --> ", numbers[0], " in this web site ", response.url)
+        if numbers is None:
+            print(Fore.RED + "Failed to retrieve the website or no numbers found.")
     # print("code ", response.status_code)
     return None
 

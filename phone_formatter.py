@@ -55,40 +55,37 @@ def list_format_number(phone_number):
 
 def phones_query():
     '''phones list'''
-    phone = [
-        # "050 426-02-25", # Агенти з нерухомості https://ktozvonit.com.ua/050/19/4260000-4269999
-        # "063 537-13-86",
-        # "068 012-97-82",
-        "068 850-47-63",
-        "073 142-83-14",
-        "073 148-20-44",
-        "073 175-35-58",
-        "073 641-09-38",
-        "073 675-56-31",
-        "073 873-05-20",
-        "097 129-99-99",
-        "098 759-08-23",
-    ]
-    fphones = []
-    # f_list = []
-    for i in phone:
-        numbers_after_format = format_phone_number(i)
-        fphones.append(numbers_after_format)
+    phone = "068 850-47-63"
+    # phone = [
+    #       # "050 426-02-25", # Агенти з нерухомості https://ktozvonit.com.ua/050/19/4260000-4269999
+            # "097 129-99-99", # Vilcov +380 (63) 363-44-44
+    #     "063 537-13-86",
+    #     "068 012-97-82",
+    #     "068 850-47-63",
+    #     "073 142-83-14",
+    #     "073 148-20-44",
+    #     "073 175-35-58",
+    #     "073 641-09-38",
+    #     "073 675-56-31",
+    #     "073 873-05-20",
+    #     "098 759-08-23",
+    # ]
+    # fphones = []
+    # # f_list = []
+    # for i in phone:
+    #     numbers_after_format = format_phone_number(i)
+    #     fphones.append(numbers_after_format)
 
         # list_after_format = list_format_number(i)
         # f_list.append(list_after_format)
-
-    # print(Fore.RED + "\nFormatted phone numbers list -----> : ")
-    # print(fphones)
-    # print(Fore.GREEN + "\nMuliple formats phone numbers list -----> : ")
-    # print(f_list)
-
-    return fphones
+    # return fphones
+    fphone = format_phone_number(phone)
+    return fphone
 
 
 # phones_query()
 
-# PHONE = "0673467247" # test for patriot.ua
+# PHONE = "067 346 7247" # test for patriot.ua
 # PHONE = input("\nEnter phone number as 10-digits format\nPhone number: ")
 # print(Fore.BLUE + "NON-formatted phone number -> ", PHONE)
 # print(Fore.GREEN + "FORMATTED  phone number -> ", formatted_phone + Fore.RESET)
