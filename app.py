@@ -14,7 +14,7 @@ def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
     # headers = {'Content-Type': 'text/html'}
     headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    response = requests.get(url, timeout=3000, headers=headers)
+    response = requests.get(url, timeout=1000, headers=headers)
     # print(response.status_code)
     if response.status_code == 403:
         print("code 403")
