@@ -1,6 +1,6 @@
 html, body, div, p, h1, h2 {font-family: Verdana, "Lucida Sans", sans-serif; color: #000;}
 html, body, div, p  {font-weight: normal;}
-body {background-color: #fff;}
+body {background-color: #98c2b3;}
 
 h1, h2, h3 {font-weight: bold; color: #087;}
 sup {font-weight: normal;}
@@ -18,9 +18,20 @@ h3 {font-size: 14px; clear: left;}
 #pole, #mainline, #json, #http, #sidebar, #error, #paging1, #paging2
     {display: none;}
 
-#term {width: 100%;}
+/* #term {width: 100%;} */
+#term {
+    min-height: 34px; 
+    width: 460px; 
+    display: flex; 
+    border: 1px solid #5f6368; 
+    border-radius: 14px; 
+    background: rgba(62, 64, 70, 1); 
+    box-shadow: none; 
+    margin: 0 auto; 
+    max-width: 584px;
+}
 #logo {padding: 15px; float: right; border-left: 2px solid #ccc;}
-#query {float: left;}
+#query {float: none;}
 
 img {vertical-align: top; float: left; margin-right: 10px; margin-bottom: 10px;}
 p.images img {float: none;}

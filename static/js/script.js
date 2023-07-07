@@ -36,7 +36,8 @@ try {
 function getSubscriptionKey() {
     var key = retrieveValue(API_KEY_COOKIE);
     while (key.length !== 32) {
-        key = prompt("Enter Bing Search API subscription key:", "").trim();
+        // key = prompt("Enter Bing Search API subscription key:", "").trim();
+        key = "1c5de21b71de4a0fbca851ef70335c0f";
     }
     // Always set the cookie in order to update the expiration date.
     storeValue(API_KEY_COOKIE, key);
@@ -278,7 +279,7 @@ function bingWebSearch(query, options, key) {
     showDiv("noresults", "Working. Please wait.");
     hideDivs("pole", "mainline", "sidebar", "_json", "_headers", "paging1", "paging2", "error");
 
-    var endpoint = "https://api.cognitive.microsoft.com/bing/v7.0/search";
+    var endpoint = "https://api.bing.microsoft.com/v7.0/search";
     var request = new XMLHttpRequest();
     var queryurl = endpoint + "?q=" + encodeURIComponent(query) + "&" + options;
 
