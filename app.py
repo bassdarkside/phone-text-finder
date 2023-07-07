@@ -12,8 +12,8 @@ SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 
 def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
-    headers = {'Content-Type': 'text/html'}
-    # headers = {'user-agent'}
+    # headers = {'Content-Type': 'text/html'}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     response = requests.get(url, timeout=3000, headers=headers)
     # print(response.status_code)
     if response.status_code == 403:
