@@ -1,3 +1,8 @@
+## Tests from chatgpt.
+I use this promt example:
+```
+Write a test script for the python code that covers functional testing: [code]
+```
 ## Functional testing
 Here's an example test script for the provided Python code that covers functional testing:
 ```
