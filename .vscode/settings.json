@@ -1,11 +1,46 @@
 {
-    "editor.tokenColorCustomizations": {
-        "comments": "",
-        "textMateRules": []
-    },
-    "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
-    },
+    "workbench.editor.restoreViewState": true,
+    "explorer.fileNesting.enabled": false,
+    "files.autoSave": "onFocusChange",
     "python.formatting.provider": "none",
-    "python.analysis.typeCheckingMode": "basic"
+    // Controls if quick suggestions should show up while typing
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    // Enable word based suggestions
+    "editor.wordBasedSuggestions": true,
+    // Enable parameter hints
+    "editor.parameterHints.enabled": true,
+    "editor.tabCompletion": "on",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnSave": true,    
+    },
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "79"
+    ],
+    "docwriter.language": "Russian",
+    "docwriter.progress.trackFunctions": true,
+    "docwriter.progress.trackMethods": false,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        "./practice",
+        "-p",
+        "test_*.py"
+    ],
+    "python.testing.pytestEnabled": false,
+    "python.testing.unittestEnabled": true,
+    "cSpell.enableFiletypes": [
+        "!c",
+        "!cpp",
+        "!csharp",
+        "!go",
+        "!java"
+    ],
+    "cSpell.language": "en,en-US,ru,uk",
+    "wolf.disableHotModeWarning": true,
 }

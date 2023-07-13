@@ -1,29 +1,29 @@
+""" This script makes phone numbers formatting 
 """
-    This script makes phone numbers formatting 
-"""
-# from colorama import Fore
 
 
 def format_phone_number(phone_number):
     """
-    Phone number formater
-    """
-    # Remove all non-digit characters
-    digits = "".join(filter(str.isdigit, phone_number))
+    Функция `format_phone_number` принимает номер телефона в качестве входных данных,
+    удаляет все нецифровые символы, проверяет допустимую длину номера и возвращает
+    отформатированный номер телефона с префиксом "38".
 
-    # Check if the number has a valid length
+    :param phone_number:    Параметр phone_number представляет собой строку, представляющую номер телефона.
+    :return:                отформатированный номер телефона в формате «38XXX-XXX-XX-XX», если введенный номер телефона действителен.
+
+    Если введенный номер телефона недействителен (не ровно 10 цифр), он возвращает строку «Неверный номер телефона».
+    """
+    digits = "".join(filter(str.isdigit, phone_number))
     if len(digits) != 10:
         return "Invalid phone number"
-
-    # Format the number as (XXX) XXX-XXXX
-    formatted_number = f"38{digits[:3]}{digits[3:6]}{digits[6:8]}{digits[8:]}"
-
-    return formatted_number
+    return f"38{digits[:3]}{digits[3:6]}{digits[6:8]}{digits[8:]}"
 
 
 def list_format_number(phone_number):
     """
-    List phone number formater
+    Функция форматирует номер телефона, добавляя дефисы в соответствующих местах.
+
+    :param phone_number: Строка, представляющая номер телефона
     """
     # Remove all non-digit characters
     digits = "".join(filter(str.isdigit, phone_number))
@@ -32,8 +32,7 @@ def list_format_number(phone_number):
     begin = digits[3:6]
     mid = digits[6:8]
     end = digits[8:]
-    # List formats
-    format_list_number = [
+    return [
         f"{oper}{begin}{mid}{end}",  #    0443507401
         f"{oper} {begin}{mid}{end}",  #    044 3507401
         f"38{oper}{begin}{mid}{end}",  # 380443507401
@@ -50,42 +49,22 @@ def list_format_number(phone_number):
         f"{cntry} ({oper}) {begin}-{mid}-{end}",  # +38 (044) 350-74-01
         f"{cntry} ({oper}) {begin} {mid} {end}",  # +38 (044) 350 74 01
     ]
-    return format_list_number
 
-'''
-"050 426-02-25" Агенти з нерухомості https://ktozvonit.com.ua/050/19/4260000-4269999
-"097 129-99-99" Vilcov.com +380 (63) 363-44-44
-"063 942 95-70" Шваб Алексей Васильевич риелтор https://rating-desing-remont.kiev.ua/rieltor/380639429570/
-"098 759-08-23"
-'''
 
-def phones_query():
-    '''phones list'''
-    # phone = [
-    phone = "063 942 95-70"
-    #   "063 537-13-86",
+def phones_query(phone_num):
+    phone = phone_num
+    return format_phone_number(phone)
 
-    #   "068 012-97-82",
-    #   "068 850-47-63",
 
-    #     "073 142-83-14",
-    #     "073 148-20-44",
-    #     "073 175-35-58",
-    #     "073 641-09-38",
-    #     "073 675-56-31",
-    #     "073 873-05-20",
-    # ]
-    # fphones = []
-    # # f_list = []
-    # for i in phone:
-    #     numbers_after_format = format_phone_number(i)
-    #     fphones.append(numbers_after_format)
+# fphones = []
+# # f_list = []
+# for i in phone:
+#     numbers_after_format = format_phone_number(i)
+#     fphones.append(numbers_after_format)
 
-        # list_after_format = list_format_number(i)
-        # f_list.append(list_after_format)
-    # return fphones
-    fphone = format_phone_number(phone)
-    return fphone
+# list_after_format = list_format_number(i)
+# f_list.append(list_after_format)
+# return fphones
 
 
 # phones_query()
