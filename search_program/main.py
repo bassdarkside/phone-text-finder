@@ -13,7 +13,7 @@ from phone_formatter import phones_query
 SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 ENDPOINT = "https://api.bing.microsoft.com" + "/v7.0"
 
-QUERY = "073 175-35-58"
+NUMBER = "073 175-35-58"
 # QUERY = "063 537-13-86"
 # QUERY = "068 012-97-82"
 # QUERY = "068 850-47-63"
@@ -56,7 +56,7 @@ def find_numbers(url):
         response = requests.get(url, timeout=500, headers=headers)
         if response.status_code != 200:
             return print(response.status_code)
-        formatted_numb = phones_query(QUERY)
+        formatted_numb = phones_query(NUMBER)
         phone_number = formatted_numb
         numbers = re.findall(phone_number, response.text)
         if numbers:
@@ -90,7 +90,7 @@ def bing_search(subscription_key):
         Функция `bing_search` возвращает список URL-адресов (результатов веб-страниц), которые соответствуют поисковому запросу.
     """
     client = WebSearchClient(AzureKeyCredential(subscription_key))
-    ph_query = phones_query(QUERY)
+    ph_query = phones_query(NUMBER)
     input_query = ph_query
     web_data = client.web.search(query=input_query, set_lang="ru-RU")
     print("\nSearched for Query#", input_query)

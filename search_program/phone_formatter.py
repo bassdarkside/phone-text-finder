@@ -65,11 +65,3 @@ def phones_query(phone_num):
 # list_after_format = list_format_number(i)
 # f_list.append(list_after_format)
 # return fphones
-
-
-# phones_query()
-
-# PHONE = "067 346 7247" # test for patriot.ua
-# PHONE = input("\nEnter phone number as 10-digits format\nPhone number: ")
-# print(Fore.BLUE + "NON-formatted phone number -> ", PHONE)
-# print(Fore.GREEN + "FORMATTED  phone number -> ", formatted_phone + Fore.RESET)
