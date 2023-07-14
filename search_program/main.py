@@ -7,13 +7,11 @@ from colorama import Fore
 from web_search_client import WebSearchClient
 from azure.core.credentials import AzureKeyCredential
 
-from phone_formatter import phones_query
-
 
 SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 ENDPOINT = "https://api.bing.microsoft.com" + "/v7.0"
 
-NUMBER = "073 175-35-58"
+PHONE_NUMBER = "073 175-35-58"
 # QUERY = "063 537-13-86"
 # QUERY = "068 012-97-82"
 # QUERY = "068 850-47-63"
@@ -32,13 +30,21 @@ NUMBER = "073 175-35-58"
 
 
 def main():
-    web_url = bing_search(SUBSCRIPTION_KEY)
+    list_url = bing_search(SUBSCRIPTION_KEY)
     num = ""
-    for index, p_n in enumerate(web_url):
-        if index < len(web_url):
-            num = p_n
-        urls = num
-        find_numbers(urls)
+    for index, item in enumerate(list_url):
+        if index < len(list_url):
+            link = item
+        #link = num
+        find_numbers(link)
+
+
+def format_phone_number(phone_number):
+
+    digits = "".join(filter(str.isdigit, phone_number))
+    if len(digits) != 10:
+        return "Invalid phone number"
+    return f"38{digits[:3]}{digits[3:6]}{digits[6:8]}{digits[8:]}"
 
 
 def find_numbers(url):
@@ -48,7 +54,7 @@ def find_numbers(url):
         if response.status_code != 200:
             return print(response.status_code)
     
-        phone_number = phones_query(NUMBER)
+        phone_number = format_phone_number(PHONE_NUMBER)
         numbers = re.findall(phone_number, response.text)
         if numbers:
             print(
@@ -70,7 +76,7 @@ def find_numbers(url):
 def bing_search(subscription_key):
     client = WebSearchClient(AzureKeyCredential(subscription_key))
     
-    input_query = phones_query(NUMBER)
+    input_query = format_phone_number(PHONE_NUMBER)
     
     web_data = client.web.search(query=input_query, set_lang="ru-RU")
     print("\nSearched for Query#", input_query)
