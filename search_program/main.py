@@ -26,16 +26,12 @@ NUMBER = "073 175-35-58"
     "097 129-99-99" Vilcov.com +380 (63) 363-44-44
     "063 942 95-70" Шваб А.В.
     "098 759-08-23"
-
     "073 142-83-14" негативні відгуки, реклама / нав'язування
     "073 148-20-44" негативні відгуки, реклама / нав'язування
-
 """
 
 
-def input_queys():
-    """Input"""
-
+def main():
     web_url = bing_search(SUBSCRIPTION_KEY)
     num = ""
     for index, p_n in enumerate(web_url):
@@ -46,18 +42,13 @@ def input_queys():
 
 
 def find_numbers(url):
-    """
-    Функция find_numbers принимает URL-адрес в качестве входных данных и выполняет некоторую операцию.
-
-    :param url: Параметр `url` представляет собой строку, представляющую URL-адрес веб-страницы
-    """
     try:
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
         response = requests.get(url, timeout=500, headers=headers)
         if response.status_code != 200:
             return print(response.status_code)
-        formatted_numb = phones_query(NUMBER)
-        phone_number = formatted_numb
+    
+        phone_number = phones_query(NUMBER)
         numbers = re.findall(phone_number, response.text)
         if numbers:
             print(
@@ -77,21 +68,10 @@ def find_numbers(url):
 
 
 def bing_search(subscription_key):
-    """
-    Функция `bing_search` принимает в качестве входных данных ключ подписки и использует его для поиска
-    веб-страниц, связанных с конкретным запросом, полученным из функции `phones_query`.
-    Затем функция печатает количество результатов веб-страницы и возвращает список URL-адресов этих веб-страниц.
-
-    :param subscription_key:
-        Параметр `subscription_key` — это ключ API или ключ подписки, необходимый для доступа к API поиска Bing.
-        Этот ключ используется для аутентификации и авторизации ваших запросов к API.
-        Вам необходимо предоставить действительный ключ подписки, чтобы выполнять успешные запросы к Bing Search API
-    :return:
-        Функция `bing_search` возвращает список URL-адресов (результатов веб-страниц), которые соответствуют поисковому запросу.
-    """
     client = WebSearchClient(AzureKeyCredential(subscription_key))
-    ph_query = phones_query(NUMBER)
-    input_query = ph_query
+    
+    input_query = phones_query(NUMBER)
+    
     web_data = client.web.search(query=input_query, set_lang="ru-RU")
     print("\nSearched for Query#", input_query)
     pages = []
@@ -108,4 +88,4 @@ def bing_search(subscription_key):
 
 
 if __name__ == "__main__":
-    input_queys()
+    main()
