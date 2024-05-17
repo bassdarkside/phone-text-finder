@@ -1,6 +1,7 @@
 """
     Request Number Sender
 """
+
 # import re
 # import requests
 # from colorama import Fore
@@ -54,6 +55,7 @@
 import requests
 from IPython.core.display import HTML
 
+
 def bing_search():
     subscription_key = "1c5de21b71de4a0fbca851ef70335c0f"
     assert subscription_key
@@ -70,9 +72,15 @@ def bing_search():
 
     # Format and view response
 
-    rows = "\n".join(["""<tr>
+    rows = "\n".join(
+        [
+            """<tr>
                         <td><a href=\"{0}\">{1}</a></td>
                         <td>{2}</td>
-                        </tr>""".format(v["url"], v["name"], v["snippet"])
-                    for v in search_results["webPages"]["value"]])
+                        </tr>""".format(
+                v["url"], v["name"], v["snippet"]
+            )
+            for v in search_results["webPages"]["value"]
+        ]
+    )
     HTML("<table>{0}</table>".format(rows))
