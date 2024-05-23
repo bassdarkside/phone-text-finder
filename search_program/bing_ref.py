@@ -5,9 +5,6 @@ from azure.core.credentials import AzureKeyCredential
 
 from phone_formatter import phones_query
 
-SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
-ENDPOINT = "https://api.bing.microsoft.com"+  "/v7.0"
-
 def bing_search(subscription_key):
     """WebSearchResultTypesLookup.
 

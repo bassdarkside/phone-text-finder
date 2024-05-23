@@ -8,7 +8,6 @@ from phone_formatter import phones_query
 
 from bing_ref import bing_search
 
-SUBSCRIPTION_KEY = "1c5de21b71de4a0fbca851ef70335c0f"
 
 def find_numbers(url):
     """_Find numbers from HTTPS GET request"""
@@ -56,8 +55,6 @@ def input_querys():
 
 def bing_to_search():
     """Bing search"""
-    subscription_key = "1c5de21b71de4a0fbca851ef70335c0f"
-    endpoint = "https://api.bing.microsoft.com" + "/v7.0/search"
 
     # Query term(s) to search for.
     query = "+38(097)129-9999"

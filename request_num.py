@@ -49,15 +49,11 @@
 
 # -=--=-=-=-= Bing Web Search v7 =-=-=-=-=-=-=-
 
-# subscription_key = "1c5de21b71de4a0fbca851ef70335c0f"
-# end_point = "https://api.bing.microsoft.com/" +  "/v7.0/"
 import requests
 from IPython.core.display import HTML
 
 def bing_search():
-    subscription_key = "1c5de21b71de4a0fbca851ef70335c0f"
-    assert subscription_key
-
+   
     search_url = "https://api.bing.microsoft.com/v7.0/search"
     search_term = "Microsoft Bing Search Services"
 

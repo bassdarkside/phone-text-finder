@@ -52,12 +52,6 @@ def list_format_number(phone_number):
     ]
     return format_list_number
 
-'''
-"050 426-02-25" Агенти з нерухомості https://ktozvonit.com.ua/050/19/4260000-4269999
-"097 129-99-99" Vilcov.com +380 (63) 363-44-44
-"063 942 95-70" Шваб Алексей Васильевич риелтор https://rating-desing-remont.kiev.ua/rieltor/380639429570/
-"098 759-08-23"
-'''
 
 def phones_query():
     '''phones list'''
