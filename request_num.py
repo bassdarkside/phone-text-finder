@@ -1,6 +1,7 @@
 """
     Request Number Sender
 """
+
 # import re
 # import requests
 # from colorama import Fore
@@ -52,8 +53,8 @@
 import requests
 from IPython.core.display import HTML
 
+
 def bing_search():
-   
     search_url = "https://api.bing.microsoft.com/v7.0/search"
     search_term = "Microsoft Bing Search Services"
 
@@ -66,9 +67,15 @@ def bing_search():
 
     # Format and view response
 
-    rows = "\n".join(["""<tr>
+    rows = "\n".join(
+        [
+            """<tr>
                         <td><a href=\"{0}\">{1}</a></td>
                         <td>{2}</td>
-                        </tr>""".format(v["url"], v["name"], v["snippet"])
-                    for v in search_results["webPages"]["value"]])
+                        </tr>""".format(
+                v["url"], v["name"], v["snippet"]
+            )
+            for v in search_results["webPages"]["value"]
+        ]
+    )
     HTML("<table>{0}</table>".format(rows))
