@@ -1,27 +1,12 @@
 """Find numbers from HTTPS GET request"""
 
-from pprint import pprint
 import re
 import requests
 from colorama import Fore
+from goggle_main import goggle_src
 
-from web_search_client import WebSearchClient
 
 PHONE_NUMBER = "073 175-35-58"
-# QUERY = "063 537-13-86"
-# QUERY = "068 012-97-82"
-# QUERY = "068 850-47-63"
-# QUERY = "073 641-09-38"
-# QUERY = "073 675-56-31"
-# QUERY = "073 873-05-20"
-
-# Создание словаря
-linked_numbers = {
-    "050 426 0225": "Агенти з нерухомості - https://ktozvonit.com.ua/050/19/4260000-4269999",
-    "063 942 9570": "Шваб А.В.",
-    "073 142 8314": "негативні відгуки, реклама / нав'язування",
-    "073 148 2044": "негативні відгуки, реклама / нав'язування",
-}
 
 
 def format_phone_number(phone_number):
@@ -29,17 +14,6 @@ def format_phone_number(phone_number):
     if len(digits) != 10:
         return "Invalid phone number"
     return f"38{digits[:3]}{digits[3:6]}{digits[6:8]}{digits[8:]}"
-
-for key, value in linked_numbers.items():
-    print(key, ":", value)
-
-
-def main():
-    list_url = bing_search(SUBSCRIPTION_KEY)
-    for index, item in enumerate(list_url):
-        if index < len(list_url):
-            link = item
-        find_numbers(link)
 
 
 def find_numbers(url):
@@ -59,30 +33,19 @@ def find_numbers(url):
                 " in ---> ",
                 response.url,
             )
-        # if numbers is None:
-        #     print(f"{Fore.RED}Failed to retrieve the website or no numbers found.")
     except requests.exceptions.ConnectionError:
         return print(
-            f"{Fore.RED}Error message: Unable to establish a connection. Please check your internet connection.{Fore.RESET}"
+            f"{Fore.RED}Error message: Unable to establish a connection. \
+            Please check your internet connection.{Fore.RESET}"
         )
 
 
-def bing_search(subscription_key):
-    client = WebSearchClient(AzureKeyCredential(subscription_key))
-    input_query = format_phone_number(PHONE_NUMBER)
-    web_data = client.web.search(query=input_query, set_lang="ru-RU")
-    print("\nSearched for Query#", input_query)
-    pages = []
-    if web_data.web_pages:
-        print("\nWebpage Results#", len(web_data.web_pages.value))
-        data = web_data.web_pages.value
-        for i in range(len(data)):
-            add = web_data.web_pages.value[i]
-            pages.append(add.url)
-    else:
-        print(f"{Fore.RED}Didn't see any Web data...")
-    pprint(pages)
-    return pages
+def main():
+    list_url = goggle_src(format_phone_number(PHONE_NUMBER))
+    for index, item in enumerate(list_url):
+        if index < len(list_url):
+            link = item
+        find_numbers(link)
 
 
 if __name__ == "__main__":

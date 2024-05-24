@@ -127,3 +127,4 @@ workspace.code-workspace
 .sourcery.yaml
 beersong.py
 request_num.py
+.sonarlint/connectedMode.json
