@@ -1,9 +1,8 @@
+import os
 import requests
 
-# from rich import print
-
-API_KEY = open("search_program/API_KEY").read()
-SEARCH_ENGINE_ID = open("search_program/SEARCH_ENGINE_ID").read()
+API_KEY = os.getenv("API_KEY")
+SEARCH_ENGINE_ID = os.getenv("SEARCH_ENGINE_ID")
 
 
 def goggle_src(search_query):
