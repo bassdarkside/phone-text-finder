@@ -2,7 +2,6 @@
 
 import re
 import requests
-from colorama import Fore
 from goggle_main import goggle_src
 
 
@@ -27,16 +26,11 @@ def find_numbers(url):
         phone_number = format_phone_number(PHONE_NUMBER)
         numbers = re.findall(phone_number, response.text)
         if numbers:
-            print(
-                f"{Fore.GREEN}Found! ---> ",
-                numbers[0],
-                " in ---> ",
-                response.url,
-            )
+            print("Found! ---> ", response.url)
     except requests.exceptions.ConnectionError:
         return print(
-            f"{Fore.RED}Error message: Unable to establish a connection. \
-            Please check your internet connection.{Fore.RESET}"
+            "Error message: Unable to establish a connection. \
+            Please check your internet connection."
         )
 
 
