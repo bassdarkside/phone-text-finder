@@ -1,12 +1,11 @@
+import os
 import requests
 
-# from rich import print
-
-API_KEY = open("search_program/API_KEY").read()
-SEARCH_ENGINE_ID = open("search_program/SEARCH_ENGINE_ID").read()
+API_KEY = os.getenv("API_KEY")
+SEARCH_ENGINE_ID = os.getenv("SEARCH_ENGINE_ID")
 
 
-def google_src(search_query):
+def goggle_src(search_query):
     url = "https://www.googleapis.com/customsearch/v1"
 
     params = {
