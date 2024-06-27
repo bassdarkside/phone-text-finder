@@ -121,10 +121,13 @@ misc/
 *.DS_Store
 
 
-workspace.code-workspace
+*.code-workspace
 .sourcery.yaml
 *.ipynb
 
-models/
-goggle_src.py
+models1/
 .sonarlint/
+instance/
+common/
+tests/
+testing.cfg
