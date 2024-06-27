@@ -80,6 +80,7 @@ docs/_build/
 target/
 
 # Jupyter Notebook
+*.ipynb
 .ipynb_checkpoints
 
 # pyenv
@@ -115,13 +116,12 @@ venv.bak/
 .idea
 
 *.pptx
-
 misc/
-
 
 *.DS_Store
 workspace.code-workspace
 
 .sourcery.yaml
 .sonarlint/
-.ipynb
+tests/
+
