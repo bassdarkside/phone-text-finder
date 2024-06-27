@@ -118,13 +118,10 @@ venv.bak/
 
 misc/
 
-search_program/API_KEY
-search_program/SEARCH_ENGINE_ID
 
 *.DS_Store
 workspace.code-workspace
 
 .sourcery.yaml
-beersong.py
-request_num.py
-.sonarlint/connectedMode.json
+.sonarlint/
+.ipynb
