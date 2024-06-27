@@ -1,0 +1,119 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+<br />
+<div class="gap-2 col-8 mx-auto">
+  <form class="row g-2" method="POST">
+    <div class="col-2">
+      <label for="validationCountryCode" class="form-label">Code</label>
+      <select
+        class="form-select"
+        name="code"
+        id="validationCountryCode"
+        required
+      >
+        <option selected disabled value="">Choose..</option>
+        {% for code in codes %}
+        <option value="{{ code.name }}">
+          {{ code.name }} {{ code.value }}
+        </option>
+        {%endfor%}
+      </select>
+      <div class="invalid-feedback">Please select a valid state.</div>
+    </div>
+    <div class="col-md-3">
+      <label for="validationPhoneNumber" class="form-label">Phone number</label>
+      <input
+        type="text"
+        class="form-control"
+        name="input_number"
+        id="validationPhoneNumber"
+        aria-label="Phone number"
+        aria-describedby="inputGroupPrepend"
+        required
+      />
+    </div>
+    <div class="col-2 align-content-end">
+      <button
+        class="btn btn-outline-success align-self-center"
+        type="submit"
+        id="buttonSearch"
+      >
+        Search
+      </button>
+    </div>
+    {{ form.csrf_token }}
+  </form>
+</div>
+<!-- <hr class="border border-primary border-2 opacity-50" /> -->
+{% if user.phone_nums %} 
+<br />
+<div class="d-grid gap-2 col-8 mx-auto">
+  <div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+      <h1 class="accordion-header">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#panelsStayOpen-collapseOne"
+          aria-expanded="true"
+          aria-controls="panelsStayOpen-collapseOne"
+        >
+          Saved phone numbers
+        </button>
+      </h1>
+      <div
+        id="panelsStayOpen-collapseOne"
+        class="accordion-collapse collapse show"
+      >
+        <div class="accordion-body">
+          <table class="table" id="phonenumbers" style="text-align: center">
+            <thead>
+              <tr>
+                <th class="text-muted" scope="col">Code</th>
+                <th class="text-muted" scope="col">Number</th>
+                <th class="text-muted" scope="col">Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for number in user.phone_nums %}
+              <tr>
+                <!-- <th scope="row">{{ loop.index }}</th> -->
+                <td>{{ number.country_code }}</td>
+                <td>{{ number.phonenumber }}</td>
+                <td>
+                  <ul>
+                    {% for data in number.data %}
+                    <li>
+                      <div class="list-group-horizontal">
+                        <a
+                          class="list-group-item list-group-item-action link-success"
+                          href="{{ data.data }}"
+                          >{{ data.data }}</a
+                        >
+                      </div>
+                    </li>
+                    {% endfor %}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      onClick="deleteNumber({{ number.id }})"
+                    ></button>
+                  </ul>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else%}
+<br />
+<h1 class="text-secondary fw-semibold text-center">
+  You didn't have any saved numbers..
+</h1>
+<hr class="border border-primary border-2 opacity-50" />
+{% endif %} {% endblock %}
