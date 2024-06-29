@@ -50,6 +50,7 @@ def home():
                 "No data found for phone number %s", input_number
             )
             flash("No data found", category="error")
+
         if data:
             new_phone = Phone(
                 phonenumber=input_number,
@@ -58,7 +59,7 @@ def home():
             )
             db.session.add(new_phone)
             db.session.commit()
-            for item in [f"{i[0]}\n" for i in data]:
+            for item in [f"{i}\n" for i in data]:
                 if not item:
                     continue
                 new_data = Data(

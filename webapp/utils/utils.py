@@ -1,44 +1,41 @@
-import time
 import re
-
 import httpx
+from urllib.parse import quote
 from bs4 import BeautifulSoup
-from selenium.webdriver import Firefox, FirefoxOptions
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+
+headers = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4703.0 Safari/537.36"
+}
 
 
-def get_page_source(query: str):
-    options = FirefoxOptions()
-    options.add_argument("--headless")
-    driver = Firefox(options=options)
+def get_links(query: str):
+    query = quote(query)
+    google_url = f"https://www.google.com/search?q={query}"
+    print("query url: ", google_url)
     try:
-        driver.get("https://www.google.com")
-        search = driver.find_element(By.NAME, "q")
-        search.send_keys(query)
-        search.send_keys(Keys.RETURN)
-        time.sleep(1)
-        return driver.page_source
-    finally:
-        driver.quit()
+        r = httpx.get(google_url, headers=headers)
+    except httpx.RequestError as exc:
+        print(f"An error occurred while requesting {exc.request.url!r}.")
+        return None
+    print("responce status code is: ", r.status_code)
+    if r.status_code == 200:
+        soup = BeautifulSoup(r.content, "html.parser")
+        results_links = []
+        for i in soup.select(".g"):
+            link = i.find("a").get("href")
+            if link is not None:
+                results_links.append(link)
 
-
-def get_links(page_source):
-    soup = BeautifulSoup(page_source, "html.parser")
-    results = soup.find("div", id="search").find_all("a")
-    return [[item.get("href"), item.h3] for item in results]
+        return results_links
 
 
 def find_number_in_site(url: str, number: str):
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
     if number.startswith("+"):
         number = f"\\{number}"
     try:
-        response = httpx.get(url, timeout=50, headers=headers)
-        response.raise_for_status()
-        return (
-            response.url if (_ := re.findall(number, response.text)) else None
-        )
+        r = httpx.get(url, timeout=3, headers=headers)
+        r.raise_for_status()
+        return r.url if (_ := re.findall(number, r.text)) else None
     except re.error:
         return "Error message: Invalid regular expression."
     except httpx.RequestError as exc:
@@ -51,13 +48,13 @@ def find_number_in_site(url: str, number: str):
 
 def main_search(country_code: str, input_number: str) -> list:
     phone_number = "".join([country_code, input_number])
-    page_source_google = get_page_source(phone_number)
-    urls = get_links(page_source_google)
-    if page_source_google is None:
+    urls = get_links(phone_number)
+    if urls is None:
         return
     links = []
-    for i in range(len(urls)):
-        result = find_number_in_site(urls[i][0], phone_number)
+    for link in urls:
+        print("link from google: ", link)
+        result = find_number_in_site(link, phone_number)
         if result is not None:
-            links.append([result, urls[i][1]])
+            links.append(link)
     return links
